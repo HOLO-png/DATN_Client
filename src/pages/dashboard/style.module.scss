@@ -1,0 +1,204 @@
+@import 'sdk/styles/global.scss';
+
+$primary_blue: #5168ff;
+$primary_black: #1c1c21;
+$text_color: #9fa2b4;
+$number_color: #ccceda;
+
+.GridContainer {
+  text-decoration: none;
+
+  &.Accessories {
+    background-color: #191919;
+    width: 100%;
+    color: $number_color;
+  }
+
+  &.Theatre {
+    & .root span {
+      text-align: initial;
+    }
+  }
+
+  & .root {
+    background-color: #191919;
+    color: $number_color;
+  }
+
+  & .subheader {
+    color: $text_color;
+  }
+
+  & .action {
+    align-self: center;
+    padding: 10px;
+
+    & svg {
+      color: $text_color;
+    }
+  }
+
+  & h2 {
+    margin: 0px 0px 20px 0px;
+  }
+
+  & .CartItemRoot {
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  & .content {
+    background-color: #191919;
+    padding: 15px;
+
+    & .IconAdd {
+      color: $number_color;
+      margin: 16px;
+    }
+
+    & .Card {
+      text-align: center;
+      background-color: $primary_black;
+      box-sizing: border-box;
+      border: 2px solid transparent;
+      -webkit-transition: border .4s ease-in;
+      -moz-transition: border .4s ease-in;
+      -o-transition: border .4s ease-in;
+      transition: border .4s ease-in;
+      padding: 13px;
+
+      &:hover {
+        border: 2px solid $primary_blue;
+        box-sizing: border-box;
+        transition: 0.25s ease-in-out;
+        cursor: pointer;
+      }
+
+      & .CardContent {
+        padding: 5px;
+        text-align: start;
+
+        &:hover .Typography {
+          color: $primary_blue;
+        }
+
+        & .text {
+          font-size: 16px;
+          font-weight: 700;
+          color: $text_color;
+        }
+
+        & .number {
+          font-size: 20px;
+          font-weight: 700;
+          color: #ccceda;
+        }
+      }
+    }
+  }
+
+  & .CardAdd {
+    & .CardContent {
+      text-align: center !important;
+    }
+  }
+
+  & .CardMusic {
+    background-color: #191919;
+    color: $number_color;
+    border-radius: 0;
+
+    & svg,
+    span {
+      color: $number_color;
+    }
+
+    & .CardSlider {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+
+  & .CardImage {
+    padding: 21px;
+    background: #191919;
+    height: 157px;
+
+  }
+
+  & .headerRoot,
+  .CardContentMedia,
+  .CardSlider {
+    padding: 5px 16px;
+  }
+
+  & .CardTodoList {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & .subheader {
+    color: $number_color;
+    text-align: center !important;
+  }
+
+  & .List {
+    width: '100%';
+    max-width: 360;
+    background-color: #191919;
+    color: $number_color;
+
+    & svg {
+      color: $number_color;
+    }
+  }
+
+  & .Chart {
+    background-color: #191919;
+    color: $number_color !important;
+  }
+
+  & .CardInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 15px;
+    color: $number_color;
+    background: #242424;
+    margin: 20px;
+    border-radius: 10px;
+    width: 200px;
+  }
+
+  & .hr {
+    background-color: $number_color;
+    width: 2px;
+    height: 50px;
+    border-radius: 10px;
+  }
+}
+
+.contentSkeleton {
+  display: flex;
+
+  & .boxSkeleton {
+    width: 272px;
+    height: 134px;
+    background-color: $primary_black;
+    border-radius: 6px;
+    box-sizing: border-box;
+
+    & .skeleton {
+      background: #3d3d3d;
+      margin-left: 1.75rem;
+      border-radius: 8px;
+    }
+  }
+
+  & .box {
+    margin-left: 1.5rem;
+  }
+}

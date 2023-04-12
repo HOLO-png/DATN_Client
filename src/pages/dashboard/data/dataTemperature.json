@@ -1,0 +1,59 @@
+{
+  "chart": {
+    "caption": "Pressure",
+    "captionontop": "0",
+    "origw": "380",
+    "origh": "150",
+    "gaugeouterradius": "190",
+    "theme": "candy",
+    "showvalue": "1",
+    "numbersuffix": " *C",
+    "valuefontsize": "25",
+    "bgColor": "0f0f0f,191919",
+    "bgratio": "60,40",
+    "bgAlpha": "70,80",
+    "bgAngle": "180",
+    "baseFontSize": "16",
+    "baseFontColor": "#fff"
+  },
+  "colorrange": {
+    "color": [
+      {
+        "minvalue": "0",
+        "maxvalue": "50",
+        "code": "#F2726F"
+      },
+      {
+        "minvalue": "50",
+        "maxvalue": "75",
+        "code": "#FFC533"
+      },
+      {
+        "minvalue": "75",
+        "maxvalue": "100",
+        "code": "#62B58F"
+      }
+    ]
+  },
+  "dials": {
+    "dial": [
+      {
+        "value": "71",
+        "tooltext": "<b>9%</b> lesser that target"
+      }
+    ]
+  },
+  "trendpoints": {
+    "point": [
+      {
+        "startvalue": "80",
+        "displayvalue": "Target",
+        "thickness": "2",
+        "color": "#E15A26",
+        "usemarker": "1",
+        "markerbordercolor": "#E15A26",
+        "markertooltext": "80%"
+      }
+    ]
+  }
+}
