@@ -25,13 +25,13 @@ const withReactFC = () => {
   return memo(
     forwardRef((props: isProps, ref: React.LegacyRef<HTMLDivElement>) => {
       useEffect(() => {
-        if (!props.isPrimary && ref.current) {
-          ref.current.style.display = 'none'
-          setTimeout(() => {
-            ref.current.style.display = 'block'
-            props.otherRef.current.style.display = 'none'
-          }, 500)
-        }
+        // if (!props.isPrimary && ref.current) {
+        // ref.current.style.display = 'none'
+        // setTimeout(() => {
+        //   ref.current.style.display = 'block'
+        //   props.otherRef.current.style.display = 'none'
+        // }, 500)
+        // }
         console.log('@@@@@@@@@@@@HAS MOUNTED', props.idx)
         props.shadowCallback(props.idx)
       }, [])
@@ -45,7 +45,7 @@ const withReactFC = () => {
     })
   )
 }
-const WrappedReactFC = withReactFC(ReactFC)
+const WrappedReactFC = withReactFC()
 
 export interface accessorType {
   icon: string
@@ -54,10 +54,10 @@ export interface accessorType {
   note: string
 }
 
-FusionCharts.options['license']({
-  key: '<YOUR KEY>',
-  creditLabel: false
-})
+// FusionCharts.options['license']({
+//   key: '<YOUR KEY>',
+//   creditLabel: false
+// })
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -115,10 +115,10 @@ const chartConfigs = {
 }
 
 const WrappedAngularGuage = forwardRef((props, ref) => {
-  const [height, _] = useState(props.height)
-  const [width, __] = useState(props.width)
-  const [resizeToWidth, setResizeToWidth] = useState(props.height)
-  const [resizeToHeight, setResizeToHeight] = useState(props.width)
+  // const [height, _] = useState(props.height)
+  // const [width, __] = useState(props.width)
+  // const [resizeToWidth, setResizeToWidth] = useState(props.height)
+  // const [resizeToHeight, setResizeToHeight] = useState(props.width)
   const [shadowKey, setShadowKey] = useState(Math.random())
   const isMounted = useRef(false)
   const prevShadowKey = useRef(null)
@@ -135,11 +135,11 @@ const WrappedAngularGuage = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     chartObj: {
-      resizeTo: (width, height) => {
-        setResizeToHeight(height)
-        setResizeToWidth(width)
-        setShadowKey(Math.random())
-      }
+      // resizeTo: (width, height) => {
+      //   setResizeToHeight(height)
+      //   setResizeToWidth(width)
+      //   setShadowKey(Math.random())
+      // }
     }
   }))
 
@@ -148,41 +148,42 @@ const WrappedAngularGuage = forwardRef((props, ref) => {
     setShadowKey(Math.random())
   }, [])
 
-  const shadowCallback = (idx) => {
-    if (prevShadowKey.current !== shadowKey) prevShadowKey.current = shadowKey
-    if (idx === 'worker-1') {
-      workers.current = { 'worker-1': true, 'worker-2': false }
-    } else {
-      workers.current = { 'worker-1': false, 'worker-2': true }
-    }
-  }
-  const getProps = (idx) => {
+  // const shadowCallback = (idx) => {
+  //   if (prevShadowKey.current !== shadowKey) prevShadowKey.current = shadowKey
+  //   if (idx === 'worker-1') {
+  //     workers.current = { 'worker-1': true, 'worker-2': false }
+  //   } else {
+  //     workers.current = { 'worker-1': false, 'worker-2': true }
+  //   }
+  // }
+
+  const getProps = (idx: number) => {
     let localProp = {}
     if (prevShadowKey.current !== shadowKey) {
-      if (workers.current[idx]) {
-        localProp.isPrimary = true
-        localProp.shadowCallback = () => {}
-        localProp.key = lastProps.current[idx].key
-        localProp.height = height
-        localProp.width = width
-      } else {
-        localProp.isPrimary = false
-        localProp.shadowCallback = shadowCallback
-        localProp.key = shadowKey
-        localProp.width = resizeToWidth
-        localProp.height = resizeToHeight
-      }
+      // if (workers.current[idx]) {
+      //   localProp.isPrimary = true
+      //   localProp.shadowCallback = () => {}
+      //   localProp.key = lastProps.current[idx].key
+      //   localProp.height = height
+      //   localProp.width = width
+      // } else {
+      //   localProp.isPrimary = false
+      //   localProp.shadowCallback = shadowCallback
+      //   localProp.key = shadowKey
+      //   localProp.width = resizeToWidth
+      //   localProp.height = resizeToHeight
+      // }
     }
 
     if (Object.keys(localProp).length !== 0) {
-      lastProps.current[idx] = { ...props, ...localProp }
+      // lastProps.current[idx] = { ...props, ...localProp }
     }
-    return lastProps.current[idx]
+    // return lastProps.current[idx]
   }
 
   return (
     <>
-      {isMounted.current && (
+      {/* {isMounted.current && (
         <WrappedReactFC
           idx='worker-1'
           {...getProps('worker-1')}
@@ -199,7 +200,7 @@ const WrappedAngularGuage = forwardRef((props, ref) => {
           otherRef={worker1Ref}
           className={styles.Chart}
         />
-      )}
+      )} */}
     </>
   )
 })
@@ -218,17 +219,17 @@ function Temperature() {
           subheader='September 14, 2016'
           classes={{ root: styles.root, subheader: styles.subheader, action: styles.action }}
         />
-        <WrappedAngularGuage {...chartConfigs} height={height} width={width} ref={ref} />
+        {/* <WrappedAngularGuage {...chartConfigs} height={height} width={width} ref={ref} /> */}
         <Grid item container sx={{ background: '#191919' }}>
           <Grid item xl={6} sm={12} md={12} lg={6}>
             <div className={styles.CardInfo}>
               <Box>
-                <Typography variant='span'>70m2</Typography>
+                <Typography variant='body1'>70m2</Typography>
                 <Typography variant='overline'>First Flor</Typography>
               </Box>
               <div className={styles.hr}></div>
               <Box>
-                <Typography variant='span'>40m</Typography>
+                <Typography variant='body1'>40m</Typography>
                 <Typography variant='overline'>Time</Typography>
               </Box>
             </div>

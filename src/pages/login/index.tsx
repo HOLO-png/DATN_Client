@@ -21,6 +21,7 @@ import eyeOnIc from './eyeOn.svg'
 import LogoIcon from './LogoIcon.svg'
 import styles from './styles.module.scss'
 import { FORGOT_PASS_ENDPOINT, LOGIN_ENDPOINT, REGISTER_ENDPOINT } from 'constants/ApiConstant'
+import { AxiosResponse } from 'axios'
 interface DataLogin {
   email?: string
   password?: string
@@ -64,7 +65,7 @@ export default function Login() {
           ApiCore.post(`${LOGIN_ENDPOINT}`, loginRef.current)
             .then((res) => {
               if (!res.status) {
-                dispatchNotification('error', res?.response.data.msg)
+                // dispatchNotification('error', res?.response.data.msg)
                 return setErrorLogin(true)
               }
               setAuth(res.data.user)
@@ -82,7 +83,7 @@ export default function Login() {
           ApiCore.post(`${REGISTER_ENDPOINT}`, loginRef.current)
             .then((res) => {
               if (!res.status) {
-                dispatchNotification('error', res?.response.data.msg)
+                // dispatchNotification('error', res?.response.data.msg)
                 return setErrorLogin(true)
               }
               setAuth(res.data.user)
@@ -270,11 +271,13 @@ export default function Login() {
   }
 
   const handleSendEmail = async () => {
+    console.log(loginRef.current)
+
     if (loginRef.current.email) {
       ApiCore.post(`${FORGOT_PASS_ENDPOINT}`, loginRef.current)
         .then((res) => {
           if (!res.status) {
-            dispatchNotification('error', res?.response.data.msg)
+            // dispatchNotification('error', res?.response.data.msg)
             return setErrorLogin(true)
           }
           dispatchNotification('success', res.data.msg)

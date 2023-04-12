@@ -7,7 +7,7 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
 import ReactFC from 'react-fusioncharts'
 import Widgets from 'fusioncharts/fusioncharts.widgets'
 import dataSource from './data/dataElectricity.json'
-import { forwardRef, memo, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { ForwardedRef, forwardRef, memo, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme, Widgets)
@@ -20,16 +20,17 @@ interface isProps {
   otherRef: { current: any }
   shadowCallback: (idx: number) => void
 }
+
 const withReactFC = () => {
   return memo(
-    forwardRef((props: isProps, ref: { current: any | null }) => {
+    forwardRef((props: isProps, ref: ForwardedRef<any>) => {
       useEffect(() => {
-        if (!props.isPrimary && ref.current) {
-          ref.current.style.display = 'none'
-          setTimeout(() => {
-            ref.current.style.display = 'block'
-            props.otherRef.current.style.display = 'none'
-          }, 500)
+        if (!props.isPrimary && ref) {
+          // ref.current.style.display = 'none'
+          // setTimeout(() => {
+          //   ref.current.style.display = 'block'
+          //   props.otherRef.current.style.display = 'none'
+          // }, 500)
         }
         props.shadowCallback(props.idx)
       }, [])
@@ -43,7 +44,7 @@ const withReactFC = () => {
     })
   )
 }
-const WrappedReactFC = withReactFC(ReactFC as any)
+const WrappedReactFC = withReactFC()
 
 export interface accessorType {
   icon: string
@@ -52,10 +53,10 @@ export interface accessorType {
   note: string
 }
 
-FusionCharts.options['license']({
-  key: '<YOUR KEY>',
-  creditLabel: false
-})
+// FusionCharts.options['license']({
+//   key: '<YOUR KEY>',
+//   creditLabel: false
+// })
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -74,13 +75,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`
       },
       '& + .MuiSwitch-track': {
-        opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be'
+        opacity: 1
+        // backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be'
       }
     }
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+    // backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
     width: 32,
     height: 32,
     '&:before': {
@@ -99,7 +100,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+    // backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
     borderRadius: 20 / 2
   }
 }))
@@ -139,7 +140,7 @@ const WrappedAngularGuage = forwardRef((props: any, ref) => {
   }, [])
 
   const shadowCallback = (idx: any) => {
-    if (prevShadowKey.current !== shadowKey) prevShadowKey.current = shadowKey
+    // if (prevShadowKey.current !== shadowKey) prevShadowKey.current = shadowKey
     if (idx === 'worker-1') {
       workers.current = { 'worker-1': true, 'worker-2': false }
     } else {
@@ -150,30 +151,30 @@ const WrappedAngularGuage = forwardRef((props: any, ref) => {
   const getProps = (idx: any) => {
     let localProp = {}
     if (prevShadowKey.current !== shadowKey) {
-      if (workers.current[idx]) {
-        localProp.isPrimary = true
-        localProp.shadowCallback = () => {}
-        localProp.key = lastProps.current[idx].key
-        localProp.height = height
-        localProp.width = width
-      } else {
-        localProp.isPrimary = false
-        localProp.shadowCallback = shadowCallback
-        localProp.key = shadowKey
-        localProp.width = resizeToWidth
-        localProp.height = resizeToHeight
-      }
+      // if (workers.current[idx]) {
+      //   localProp.isPrimary = true
+      //   localProp.shadowCallback = () => {}
+      //   localProp.key = lastProps.current[idx].key
+      //   localProp.height = height
+      //   localProp.width = width
+      // } else {
+      //   localProp.isPrimary = false
+      //   localProp.shadowCallback = shadowCallback
+      //   localProp.key = shadowKey
+      //   localProp.width = resizeToWidth
+      //   localProp.height = resizeToHeight
+      // }
     }
 
     if (Object.keys(localProp).length !== 0) {
-      lastProps.current[idx] = { ...props, ...localProp }
+      // lastProps.current[idx] = { ...props, ...localProp }
     }
-    return lastProps.current[idx]
+    // return lastProps.current[idx]
   }
 
   return (
     <>
-      {isMounted.current && (
+      {/* {isMounted.current && (
         <WrappedReactFC
           idx='worker-1'
           {...getProps('worker-1')}
@@ -190,7 +191,7 @@ const WrappedAngularGuage = forwardRef((props: any, ref) => {
           otherRef={worker1Ref}
           className={styles.Chart}
         />
-      )}
+      )} */}
     </>
   )
 })

@@ -44,7 +44,7 @@ function Theatre() {
         <Card sx={{ display: 'flex' }} className={styles.CardMusic}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <CardContent sx={{ flex: '1 0 auto' }} className={styles.CardContentMedia}>
-              <Typography component='div' variant='span' sx={{ fontSize: '1.1rem' }}>
+              <Typography component='div' variant='subtitle2' sx={{ fontSize: '1.1rem' }}>
                 Live From Space
               </Typography>
               <Typography variant='subtitle1' color='text.secondary' component='span'>
